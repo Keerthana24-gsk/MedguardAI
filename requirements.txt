@@ -1,0 +1,13 @@
+streamlit
+fastapi
+uvicorn
+langgraph
+google-genai
+paddleocr
+paddlepaddle
+opencv-python
+pandas
+numpy
+requests
+python-dotenv
+# optional: chromadb sentence-transformers networkx reportlab

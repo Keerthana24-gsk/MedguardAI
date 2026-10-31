@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}Medication report{% endblock %}{% block content %}
+<div class="stepper"><span class="done">01 <b>Upload</b></span><i></i><span class="done">02 <b>Review</b></span><i></i><span class="done">03 <b>Analysis</b></span><i></i><span class="active">04 <b>Report</b></span></div>
+<div class="page-heading"><div><div class="eyebrow">STEP 04 · YOUR SUMMARY</div><h1>Medication safety report</h1><p class="muted">A record of the screening performed using the confirmed entries.</p></div><a class="btn primary" href="{{ url_for('download_report') }}">↓ Download report</a></div>
+<div class="panel report-panel"><div class="report-meta"><div><span class="eyebrow">PREPARED FOR</span><h2>{{ profile.full_name }}</h2><p class="muted">Age {{ profile.age }} · {{ profile.contact }}</p></div><span class="report-mark">✚ MedGuard AI</span></div><pre class="report-text">{{ state.get('report', 'No report available.') }}</pre></div>
+<div class="notice"><span>!</span><p>Keep this report for discussion with a qualified healthcare professional. It is not a prescription, diagnosis or instruction to change treatment.</p></div>
+{% endblock %}

@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedGuard AI | Upload Prescription</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8f7;
+            color: #263b3a;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e4ece9;
+        }
+
+        .logo {
+            color: #087f73;
+            font-size: 24px;
+            font-weight: 750;
+        }
+
+        .logo span {
+            color: #263b3a;
+        }
+
+        .profile {
+            color: #526563;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            margin-bottom: 28px;
+        }
+
+        .heading h1 {
+            font-size: 30px;
+            color: #173d39;
+            margin-bottom: 9px;
+        }
+
+        .heading p {
+            color: #71817e;
+            line-height: 1.6;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e5eeeb;
+            box-shadow: 0 8px 25px rgba(30, 70, 65, 0.05);
+            margin-bottom: 22px;
+        }
+
+        .section-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #174c45;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #71817e;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .upload-area {
+            border: 2px dashed #9bc9c1;
+            border-radius: 13px;
+            padding: 35px 20px;
+            text-align: center;
+            background: #f8fcfb;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #eff9f6;
+            border-color: #087f73;
+        }
+
+        .upload-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .upload-area h3 {
+            color: #285b54;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .upload-area p {
+            color: #84938f;
+            font-size: 13px;
+        }
+
+        .browse {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 22px;
+            background: #087f73;
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        #prescriptions {
+            display: none;
+        }
+
+        .file-status {
+            margin-top: 18px;
+            display: none;
+            background: #eef8f5;
+            color: #176b5e;
+            border: 1px solid #cce8df;
+            padding: 12px 15px;
+            border-radius: 9px;
+            font-size: 14px;
+        }
+
+        .preview-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 18px;
+        }
+
+        .preview-item {
+            border: 1px solid #e3ece9;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 145px;
+            object-fit: contain;
+            background: #f5f8f7;
+            display: block;
+        }
+
+        .file-info {
+            padding: 11px;
+            font-size: 12px;
+            color: #526563;
+            overflow-wrap: anywhere;
+        }
+
+        .file-info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #285b54;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #d5e2de;
+            border-radius: 10px;
+            padding: 14px;
+            resize: vertical;
+            outline: none;
+            font-size: 14px;
+            line-height: 1.6;
+            background: #fbfdfc;
+        }
+
+        textarea:focus {
+            border-color: #087f73;
+        }
+
+        .note {
+            background: #fff9e9;
+            border: 1px solid #f0e1b7;
+            color: #78602b;
+            border-radius: 9px;
+            padding: 13px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 18px;
+        }
+
+        .messages {
+            margin-bottom: 18px;
+        }
+
+        .message {
+            padding: 13px 15px;
+            border-radius: 9px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            background: #eaf8f0;
+            color: #216744;
+            border: 1px solid #c8ead5;
+        }
+
+        .message.error {
+            background: #fff0ef;
+            color: #a33d36;
+            border: 1px solid #f2ceca;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            background: #087f73;
+            color: white;
+            font-size: 16px;
+            font-weight: 650;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #06675e;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #8a9995;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            main {
+                margin: 28px auto;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .heading h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">MedGuard <span>AI</span></div>
+
+    <div class="profile">
+        Welcome,<br>
+        <strong>{{ profile.get('full_name', 'User') }}</strong>
+    </div>
+</header>
+
+<main>
+
+    <div class="heading">
+        <h1>Prescription Upload</h1>
+        <p>
+            Upload your prescription images or enter medicine names manually.
+            MedGuard will extract the information for your review.
+        </p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="messages">
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST"
+          action="{{ url_for('upload') }}"
+          enctype="multipart/form-data"
+          id="uploadForm">
+
+        <div class="card">
+            <div class="section-title">1. Upload prescription images</div>
+
+            <p class="description">
+                Select one or more prescription images from your device.
+                Supported formats: PNG, JPG, JPEG and WEBP.
+            </p>
+
+            <label for="prescriptions" class="upload-area">
+                <div class="upload-icon">📄</div>
+                <h3>Choose prescription images</h3>
+                <p>Click below to browse your files</p>
+                <span class="browse">Browse Files</span>
+            </label>
+
+            <input
+                type="file"
+                id="prescriptions"
+                name="prescriptions"
+                accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
+                multiple
+            >
+
+            <div id="fileStatus" class="file-status"></div>
+            <div id="previewList" class="preview-list"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">2. Enter medicines manually</div>
+
+            <p class="description">
+                If you cannot upload a prescription, enter the medicine names
+                below. You can also use this field to add information that
+                is unclear in the prescription.
+            </p>
+
+            <textarea
+                name="manual_medicines"
+                id="manualMedicines"
+                placeholder="Example:
+
+Metformin 500 mg
+Amlodipine 5 mg
+Atorvastatin 10 mg
+
+Enter one medicine per line..."
+            ></textarea>
+
+            <div class="note">
+                <strong>Important:</strong> Prescription extraction may contain
+                errors, especially with handwritten text. Always review and
+                confirm the medicine names and strengths before analysis.
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Upload & Extract Medicines →
+            </button>
+        </div>
+
+    </form>
+
+</main>
+
+<footer>
+    MedGuard AI · Medication Safety Documentation Prototype
+    <br>
+    This prototype is not a substitute for professional medical advice.
+</footer>
+
+<script>
+    const fileInput = document.getElementById("prescriptions");
+    const previewList = document.getElementById("previewList");
+    const fileStatus = document.getElementById("fileStatus");
+    const submitBtn = document.getElementById("submitBtn");
+    const uploadForm = document.getElementById("uploadForm");
+    const manualMedicines = document.getElementById("manualMedicines");
+
+    fileInput.addEventListener("change", function () {
+        previewList.innerHTML = "";
+
+        const files = Array.from(fileInput.files);
+
+        if (files.length === 0) {
+            fileStatus.style.display = "none";
+            return;
+        }
+
+        fileStatus.style.display = "block";
+        fileStatus.textContent =
+            files.length + " prescription image(s) selected. " +
+            "These are ready to upload; they have not been uploaded yet.";
+
+        files.forEach(function (file) {
+            const item = document.createElement("div");
+            item.className = "preview-item";
+
+            const info = document.createElement("div");
+            info.className = "file-info";
+
+            const name = document.createElement("strong");
+            name.textContent = file.name;
+
+            const size = document.createElement("span");
+            size.textContent =
+                (file.size / (1024 * 1024)).toFixed(2) + " MB";
+
+            info.appendChild(name);
+            info.appendChild(size);
+
+            if (file.type.startsWith("image/")) {
+                const img = document.createElement("img");
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    img.src = event.target.result;
+                };
+
+                reader.readAsDataURL(file);
+                item.appendChild(img);
+            }
+
+            item.appendChild(info);
+            previewList.appendChild(item);
+        });
+    });
+
+    uploadForm.addEventListener("submit", function (event) {
+        const hasFiles = fileInput.files.length > 0;
+        const hasManualText = manualMedicines.value.trim().length > 0;
+
+        if (!hasFiles && !hasManualText) {
+            event.preventDefault();
+            alert("Please select a prescription image or enter medicine names.");
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Uploading and extracting... Please wait";
+    });
+</script>
+
+</body>
+</html>

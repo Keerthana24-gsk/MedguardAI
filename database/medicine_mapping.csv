@@ -1,0 +1,29 @@
+brand,ingredients,therapeutic_class
+Crocin,paracetamol,analgesic/antipyretic
+Dolo 650,paracetamol,analgesic/antipyretic
+Calpol,paracetamol,analgesic/antipyretic
+Paracetamol,paracetamol,analgesic/antipyretic
+Acetaminophen,paracetamol,analgesic/antipyretic
+Brufen,ibuprofen,NSAID
+Ibuprofen,ibuprofen,NSAID
+Combiflam,ibuprofen;paracetamol,NSAID
+Voveran,diclofenac,NSAID
+Diclofenac,diclofenac,NSAID
+Ecosprin,aspirin,antiplatelet/NSAID
+Aspirin,aspirin,antiplatelet/NSAID
+Warfarin,warfarin,anticoagulant
+Warf,warfarin,anticoagulant
+Zocor,simvastatin,statin
+Simvastatin,simvastatin,statin
+Lipitor,atorvastatin,statin
+Atorvastatin,atorvastatin,statin
+Norvasc,amlodipine,calcium channel blocker
+Amlokind,amlodipine,calcium channel blocker
+Amlodipine,amlodipine,calcium channel blocker
+Clarithromycin,clarithromycin,macrolide antibiotic
+Lisinopril,lisinopril,ACE inhibitor
+Aldactone,spironolactone,potassium-sparing diuretic
+Spironolactone,spironolactone,potassium-sparing diuretic
+Viagra,sildenafil,PDE5 inhibitor
+Sildenafil,sildenafil,PDE5 inhibitor
+Nitroglycerin,nitroglycerin,nitrate

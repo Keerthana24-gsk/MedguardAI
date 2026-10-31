@@ -1,0 +1,10 @@
+drug_a,drug_b,interaction,risk,mechanism,management,source
+warfarin,aspirin,Increased risk of bleeding,Major,Additive anticoagulant/antiplatelet effects,Avoid combination or monitor closely,SAMPLE - replace with DDInter 2.0 export
+warfarin,ibuprofen,Increased risk of bleeding,Major,NSAID platelet inhibition and GI mucosal injury,Avoid or monitor INR and bleeding,SAMPLE - replace with DDInter 2.0 export
+warfarin,diclofenac,Increased risk of bleeding,Major,NSAID platelet inhibition and GI mucosal injury,Avoid or monitor INR and bleeding,SAMPLE - replace with DDInter 2.0 export
+warfarin,paracetamol,Possible INR increase with regular use,Moderate,Possible inhibition of vitamin K recycling,Monitor INR,SAMPLE - replace with DDInter 2.0 export
+aspirin,ibuprofen,Reduced antiplatelet effect and higher GI bleeding risk,Moderate,Competition at COX-1 binding site,Separate dosing or consult clinician,SAMPLE - replace with DDInter 2.0 export
+simvastatin,clarithromycin,Increased statin exposure and myopathy risk,Major,CYP3A4 inhibition,Avoid combination,SAMPLE - replace with DDInter 2.0 export
+simvastatin,amlodipine,Increased simvastatin exposure,Moderate,CYP3A4 inhibition,Limit simvastatin dose,SAMPLE - replace with DDInter 2.0 export
+sildenafil,nitroglycerin,Severe hypotension,Major,Additive vasodilation via cGMP,Contraindicated,SAMPLE - replace with DDInter 2.0 export
+lisinopril,spironolactone,Hyperkalemia,Moderate,Additive potassium retention,Monitor potassium and renal function,SAMPLE - replace with DDInter 2.0 export
