@@ -11,4 +11,5 @@ numpy
 requests
 python-dotenv
 gunicorn
+flask
 # optional: chromadb sentence-transformers networkx reportlab
