@@ -10,4 +10,5 @@ pandas
 numpy
 requests
 python-dotenv
+gunicorn
 # optional: chromadb sentence-transformers networkx reportlab
